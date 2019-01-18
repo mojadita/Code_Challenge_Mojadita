@@ -22,3 +22,58 @@ Fri Jan 18 15:25:41 EET 2019
 > requirements, and is backed up in a git repository, allowing us
 > to include it as a git submodule.
 [=====================================================================]
+Fri Jan 18 17:53:27 EET 2019
+
+> The application uses a web interface, so a servlet in Java seems to
+> be the most appropiate way to implement it, so all the details of the
+> http server protocol implementation are supplied by the environment.
+> 
+> I'll try to use Jetty for the web application server configured to
+> use a servlet instance to comply with the needs of the project.
+> 
+> Jetty will be configured to use port 8055 and the POST interface to
+> store the shipments will be registered under the /api/register path.
+> 
+> In the same manner, the PUT service will be registered under the 
+> /api/push path (tracking)
+> 
+> from the servlet api, we'll have four api methods registered:
+> the implementation of the doPost() doPut(), init() and destroy().
+> The other methods will not be overriden.
+> 
+> First JUnit tests must verify that Content-type is indeed text/json
+> and parse (with help of the GSON library) the data.  The parsing
+> will allow for future specification expansions, by registering a
+> mapped Object class (GSON checking will be done against it) and the
+> actual tests will be made against the instance values of those
+> objects.
+> 
+> The business model checks translate into JUnit tests in this
+> manner:
+> 
+> * All tests will be tried to be unit tested in at least one
+>   acceptance test (valid data produce a positive response) and
+>   a failure test (invalid data produce an error response)
+> * All tests must have matching shipment reference and tracking
+>   reference.  As the business model requires to find the "other"
+>   instance in order to match the references, only two cases are
+>   possible: either we have a matching reference stored in the
+>   database (if we don't, then we can consider an unmatching
+>   references case)
+> * In case the last test succeds, then we must also check that
+>   all required fields are present (we test for null fields or
+>   inexistent in the instances.
+> 
+> For printing messages to the console, the best approach could be
+> to use a specialised Logger (from Log4j package) and define a
+> specific Logger to receive the console messages.  In this case
+> we can mock the Logger instance (for the unit tests) and check
+> that the console messages are being logged.
+> 
+> To allow to mock the interface objects the application is going
+> to use, several constructors will be developed in order to allow
+> to inject the private instances of the mocked objects or the
+> actual ones from the application.
+> 
+> 
+[=====================================================================]
