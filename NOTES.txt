@@ -1,0 +1,10 @@
+File: NOTES.txt
+Created: Fri Jan 18 07:21:21 EET 2019
+[=====================================================================]
+Fri Jan 18 07:21:21 EET 2019
+
+> Repository forked into https://github.com/mojadita/Code_Challenge_Mojadita
+> as required by point 1.
+> Repository cloned to be able to work on it.  This file NOTES.txt added
+> to register the working progress.
+[=====================================================================]
