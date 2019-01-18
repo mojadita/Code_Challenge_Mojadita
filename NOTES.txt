@@ -8,3 +8,17 @@ Fri Jan 18 07:21:21 EET 2019
 > Repository cloned to be able to work on it.  This file NOTES.txt added
 > to register the working progress.
 [=====================================================================]
+Fri Jan 18 15:23:09 EET 2019
+
+> Beginning point 2: Work on the requirements.
+> From this, we'll get the interface of the program modules and the
+> requirement unit tests necessary to implement.
+[=====================================================================]
+Fri Jan 18 15:25:41 EET 2019
+
+> We need a JSON parser and serializer that allows us to
+> serialize internal objects (POJOs) into JSON and back to Java.
+> I'll include the library GSON from google, as it fills all the
+> requirements, and is backed up in a git repository, allowing us
+> to include it as a git submodule.
+[=====================================================================]
