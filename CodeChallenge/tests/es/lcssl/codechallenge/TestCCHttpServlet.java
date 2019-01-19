@@ -8,14 +8,14 @@
  */
 package es.lcssl.codechallenge;
 
+import java.io.IOException;
+
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import org.jmock.Mockery;
-import org.junit.Assert;
-import org.junit.Before;
+import org.easymock.EasyMock;
 import org.junit.Test;
-
-import com.google.gson.Gson;
 
 /**
  * @author luis
@@ -23,40 +23,17 @@ import com.google.gson.Gson;
  */
 public class TestCCHttpServlet {
 
-	private Mockery ctx = new Mockery();
 	private CCHttpServlet iut;
-	Gson m_parser;
 	
-	String json_post = "{\n" + 
-          "\"reference\":\"ABCD123456\",\n" +
-          "  \"parcels\" : [\n" +
-          "  {\n" +
-          "    \"weight\":1,\n" +
-          "    \"width\": 10,\n" +
-          "    \"height\": 10,\n" +
-          "    \"lenght\": 10\n" +
-          "  },\n" +
-          "  {\n" +
-          "    \"weight\":2,\n" +
-          "    \"width\": 20,\n" +
-          "    \"height\": 20,\n" +
-          "    \"lenght\": 20\n" +
-          "  }\n" +
-          "  ]\n" +
-          "}\n";
-	
-	@Before
-	public void prepare() {
-		iut = new CCHttpServlet(m_parser);
-	}
-	
-	@Test
-	public void testInit() throws ServletException {
-		iut.init();
-	}
-	
-	@Test
-	public void testDoPost() throws ServletException {
+	@Test(expected=ServletException.class)
+	public void testDoPostFailContentType() throws ServletException, IOException {
+		iut = new CCHttpServlet();
+		HttpServletRequest req = EasyMock.createMock(HttpServletRequest.class);
+		HttpServletResponse resp = EasyMock.createMock(HttpServletResponse.class);
+		/* we expect the call to doPost() to ask for the content-type http request field */
+		EasyMock.expect(req.getContentType()).andReturn("text/html");  /* invalid, correct should be text/json */
+		EasyMock.replay(req);
         iut.init();
+        iut.doPost(req, resp);
     }
 }
