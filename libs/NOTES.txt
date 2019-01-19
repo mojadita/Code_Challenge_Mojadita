@@ -13,3 +13,18 @@ Sat Jan 19 17:07:48 EET 2019
 > verify for proper content-type (text/json)  This test is expected to
 > return a 
 [=====================================================================]
+Sat Jan 19 17:22:10 EET 2019
+
+> We cannot mock Gson class, as it has been marked final by the
+> developers.  There can be two approaches to this.  First, extract
+> an interface from GSON class and do an extensible (not final) class
+> implementing such an interface, then mock it.  Derive a class
+> implementing such interface, encapsulating a Gson instance for true
+> implementation.  This is weird, but it's a gson design decision, so
+> we must respect it :)
+[=====================================================================]
+Sat Jan 19 17:23:11 EET 2019
+
+> for now, we can feed Gson with complete parseable json strings, so
+> it's a minor problem.
+[=====================================================================]
