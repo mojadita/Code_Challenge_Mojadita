@@ -1,0 +1,15 @@
+File: NOTES.txt
+Created: Sat Jan 19 17:07:48 EET 2019
+[=====================================================================]
+Sat Jan 19 17:07:48 EET 2019
+
+> Created unit tests for classes Shipment and Tracking.
+> 
+> We only verify that the valid() method returns of both classes.  It
+> should throw and ValidationException on failure, but for now (nothing
+> implemented yet) it throws UnsupportedOperationException.
+> 
+> Created a first test for doPost() method in main servlet to
+> verify for proper content-type (text/json)  This test is expected to
+> return a 
+[=====================================================================]
